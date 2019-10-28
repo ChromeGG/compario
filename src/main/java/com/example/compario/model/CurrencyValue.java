@@ -8,13 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
-@Document
 @Data
 @NoArgsConstructor
+
+@Document(collection = "currency_values")
 public class CurrencyValue {
 
     @Id
-    Long id;
+    String id;
     String description;
     Integer value;
 
