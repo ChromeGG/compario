@@ -18,7 +18,7 @@ public class CurrencyValueService {
     }
 
     public CurrencyValue create(String description, int value) {
-        return valueRepo.save(new CurrencyValue(description, value));
+        return valueRepo.save(new CurrencyValue(value, description));
     }
 
     public List<CurrencyValue> getAll() {

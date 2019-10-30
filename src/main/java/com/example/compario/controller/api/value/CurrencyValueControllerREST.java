@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/values")
-public class ValueControllerREST {
+public class CurrencyValueControllerREST {
 
     private CurrencyValueService currencyValueService;
 
     @Autowired
-    public ValueControllerREST(CurrencyValueService currencyValueService) {
+    public CurrencyValueControllerREST(CurrencyValueService currencyValueService) {
         this.currencyValueService = currencyValueService;
     }
 
