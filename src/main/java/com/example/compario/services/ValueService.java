@@ -1,6 +1,5 @@
 package com.example.compario.services;
 
-import com.example.compario.model.CurrencyValue;
 import com.example.compario.model.Value;
 import com.example.compario.repository.ValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class ValueService {
         this.valueRepo = valueRepo;
     }
 
-    public CurrencyValue create(String description, int value) {
-        return valueRepo.save(new CurrencyValue(value, description));
+    public Value create(String description, int value) {
+        return valueRepo.save(new Value(value, description));
     }
 
     public List<Value> getAll() {
