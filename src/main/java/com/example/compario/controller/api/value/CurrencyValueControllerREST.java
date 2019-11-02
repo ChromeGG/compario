@@ -1,20 +1,20 @@
 package com.example.compario.controller.api.value;
 
 import com.example.compario.model.CurrencyValue;
-import com.example.compario.services.CurrencyValueService;
+import com.example.compario.services.ValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/values")
+@RequestMapping("api/values/currencies")
 public class CurrencyValueControllerREST {
 
-    private CurrencyValueService currencyValueService;
+    private ValueService currencyValueService;
 
     @Autowired
-    public CurrencyValueControllerREST(CurrencyValueService currencyValueService) {
+    public CurrencyValueControllerREST(ValueService currencyValueService) {
         this.currencyValueService = currencyValueService;
     }
 
@@ -25,7 +25,7 @@ public class CurrencyValueControllerREST {
     }
 
     @GetMapping
-    public List<CurrencyValue> getCurrencyValue() {
+    public List getCurrencyValue() {
         return currencyValueService.getAll();
     }
 }
