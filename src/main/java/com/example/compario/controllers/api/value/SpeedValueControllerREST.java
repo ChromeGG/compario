@@ -2,7 +2,7 @@ package com.example.compario.controllers.api.value;
 
 import com.example.compario.models.SpeedValue;
 import com.example.compario.services.SpeedValueService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/values/speed")
 public class SpeedValueControllerREST extends GenericController<SpeedValue> {
 
-    @Autowired
-    public SpeedValueControllerREST(SpeedValueService speedValueService) {
+    public SpeedValueControllerREST(@Qualifier("speedValueService") SpeedValueService speedValueService) {
         super(speedValueService);
     }
 

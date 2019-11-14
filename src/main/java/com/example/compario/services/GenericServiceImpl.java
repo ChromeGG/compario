@@ -4,16 +4,18 @@ import com.example.compario.models.Value;
 import com.example.compario.repositories.GenericValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class GenericServiceImpl<T extends Value> implements GenericService<T> {
 
-    @Autowired
     private GenericValueRepository<T> dao;
+
+    @Autowired
+    public GenericServiceImpl(GenericValueRepository<T> dao) {
+        this.dao = dao;
+    }
 
     @Override
     public List<T> findAll() {
