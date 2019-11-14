@@ -1,12 +1,14 @@
-package com.example.compario.model;
+package com.example.compario.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
-public class Value {
+public class Value implements Serializable {
 
     @Id
     String id;
