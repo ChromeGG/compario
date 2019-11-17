@@ -1,4 +1,4 @@
-package com.example.compario.model;
+package com.example.compario.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
