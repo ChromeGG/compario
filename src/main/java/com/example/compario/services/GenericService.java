@@ -1,20 +1,18 @@
 package com.example.compario.services;
 
+import com.example.compario.repositories.GenericValueRepository;
 
-import com.example.compario.models.Value;
+public abstract class GenericService<T> {
 
-import java.util.List;
+    public abstract GenericValueRepository<T> getRepository();
 
-public interface GenericService<T extends Value> {
-    List<T> findAll();
+    public Iterable<T> findAll() {
 
-    T save(T entity);
+        return getRepository().findAll();
+    }
 
-    T findById(String id);
+    public T save(T entity) {
 
-    void delete(T entity);
-
-    void deleteById(String id);
-
-    long count();
+        return getRepository().save(entity);
+    }
 }

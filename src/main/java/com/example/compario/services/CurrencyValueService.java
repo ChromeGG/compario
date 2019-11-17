@@ -2,17 +2,20 @@ package com.example.compario.services;
 
 import com.example.compario.models.CurrencyValue;
 import com.example.compario.repositories.CurrencyValueRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.example.compario.repositories.GenericValueRepository;
 import org.springframework.stereotype.Service;
 
-@Service("currencyValueService")
-public class CurrencyValueService extends GenericServiceImpl<CurrencyValue> {
+@Service
+public class CurrencyValueService extends GenericService<CurrencyValue> {
 
-    public CurrencyValueService(@Qualifier("currencyValueRepository") CurrencyValueRepository dao) {
-        super(dao);
+    private final CurrencyValueRepository currencyValueRepository;
+
+    public CurrencyValueService(CurrencyValueRepository currencyValueRepository) {
+        this.currencyValueRepository = currencyValueRepository;
     }
 
-//    public SpeedValueService(@Qualifier("speedValueRepository") GenericValueRepository<SpeedValue> dao) {
-//        super(dao);
-//    }
+    @Override
+    public GenericValueRepository<CurrencyValue> getRepository() {
+        return currencyValueRepository;
+    }
 }
