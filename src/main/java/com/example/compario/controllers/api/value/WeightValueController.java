@@ -3,9 +3,11 @@ package com.example.compario.controllers.api.value;
 import com.example.compario.models.WeightValue;
 import com.example.compario.services.GenericService;
 import com.example.compario.services.WeightValueService;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("api/values/weight")
 public class WeightValueController extends GenericController<WeightValue> {
 
     private final WeightValueService weightValueService;

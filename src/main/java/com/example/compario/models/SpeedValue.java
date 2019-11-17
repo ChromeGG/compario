@@ -9,9 +9,4 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "speed_values")
 public class SpeedValue extends Value {
-
-    public SpeedValue(int value, String description) {
-        super(value, description);
-    }
-
 }

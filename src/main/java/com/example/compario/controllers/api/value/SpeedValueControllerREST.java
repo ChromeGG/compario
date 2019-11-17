@@ -20,21 +20,4 @@ public class SpeedValueControllerREST extends GenericController<SpeedValue> {
     public GenericService<SpeedValue> getService() {
         return speedValueService;
     }
-
-
-    //    @Autowired
-//    public SpeedValueControllerREST(ValueService speedValueService) {
-//        this.speedValueService = speedValueService;
-//    }
-//
-//    @PostMapping
-//    public String create(@RequestParam String description, @RequestParam int value) {
-//        Object v = speedValueService.create(description, value);
-//        return "Added to DB: \n" + v.toString();
-//    }
-//
-//    @GetMapping
-//    public List getCurrencyValue() {
-//        return speedValueService.getAll();
-//    }
 }

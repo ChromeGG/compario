@@ -21,9 +21,4 @@ public class CurrencyValueControllerREST extends GenericController<CurrencyValue
         return currencyValueService;
     }
 
-//        @Autowired
-//        public SpeedValueControllerREST(GenericServiceImpl<SpeedValue> speedValueService) {
-//            super(speedValueService);
-//        }
-
 }
