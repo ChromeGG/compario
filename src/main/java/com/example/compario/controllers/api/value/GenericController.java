@@ -22,4 +22,19 @@ public abstract class GenericController<T extends Value> {
 
         return ResponseEntity.ok(getService().save(entity));
     }
+
+//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<?> saveCity(@RequestBody City city) {
+//        if(!cities.contains(city)) {
+//            cities.add(city);
+//            URI location = ServletUriComponentsBuilder
+//                    .fromCurrentRequest()
+//                    .path("/{id}")
+//                    .buildAndExpand(cities.size()-1)
+//                    .toUri();
+//            return ResponseEntity.created(location).body(city);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+//        }
+//    }
 }
