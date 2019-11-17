@@ -2,12 +2,10 @@ package com.example.compario.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
 
 @Document(collection = "currency_values")
 public class CurrencyValue extends Value {

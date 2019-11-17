@@ -1,17 +1,13 @@
 package com.example.compario.models;
 
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 
-@Document(collection = "speed_values")
-public class SpeedValue extends Value {
-
-    public SpeedValue(int value, String description) {
-        super(value, description);
-    }
-
+@Document(collection = "weight_values")
+public class WeightValue extends Value {
 }
