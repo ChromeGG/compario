@@ -13,6 +13,10 @@ public abstract class GenericService<T extends Value> {
         return getRepository().findAll();
     }
 
+    public Optional<T> findByDescription(String decription) {
+        return getRepository().findByDescription(decription);
+    }
+
     public void save(T entity) {
         Optional<T> valueWithTheSameDescription = getRepository().findByDescription(entity.getDescription());
 

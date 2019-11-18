@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public abstract class GenericController<T extends Value> {
 
@@ -22,8 +23,20 @@ public abstract class GenericController<T extends Value> {
         return ResponseEntity.ok(getService().findAll());
     }
 
+    //FIXME handle with description contains space character
+    @GetMapping(params = "description")
+    public ResponseEntity<T> findByDescription(@RequestParam(name = "description") String descriptionParam) {
+        System.out.println(descriptionParam);
+        Optional<T> foundByDescription = getService().findByDescription(descriptionParam);
+        if (foundByDescription.isPresent()) {
+            return ResponseEntity.ok(foundByDescription.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
     @PostMapping
-    public ResponseEntity<String> saveWithOnlyValueAndDescription(@RequestParam(name = "description") String descriptionParam, @RequestParam(name = "value") String valueParam) {
+    public ResponseEntity<T> saveWithOnlyValueAndDescription(@RequestParam(name = "description") String descriptionParam, @RequestParam(name = "value") String valueParam) {
         T entity = getNewInstanceOfT();
 
         entity.setDescription(descriptionParam);
@@ -31,7 +44,7 @@ public abstract class GenericController<T extends Value> {
 
         try {
             getService().save(entity);
-            return ResponseEntity.status(HttpStatus.CREATED).body(entity.toString());
+            return ResponseEntity.status(HttpStatus.CREATED).body(entity);
         } catch (RuntimeException exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
