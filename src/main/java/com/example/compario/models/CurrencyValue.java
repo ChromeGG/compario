@@ -1,18 +1,20 @@
-package com.example.compario.model;
+package com.example.compario.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 
-@Document(collection = "speed_values")
-public class SpeedValue extends Value {
+@Document(collection = "currency_values")
+public class CurrencyValue extends Value {
 
-    public SpeedValue(int value, String description) {
+    public CurrencyValue(BigDecimal value, String description) {
         super(value, description);
     }
 }
