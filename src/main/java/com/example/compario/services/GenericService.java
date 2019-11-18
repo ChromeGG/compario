@@ -3,6 +3,8 @@ package com.example.compario.services;
 import com.example.compario.models.Value;
 import com.example.compario.repositories.GenericValueRepository;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class GenericService<T extends Value> {
@@ -32,5 +34,9 @@ public abstract class GenericService<T extends Value> {
 
         //TODO fix optional.get
         getRepository().delete(toRemove.get());
+    }
+
+    public List<T> findByValue(BigDecimal bigDecimal) {
+        return getRepository().findByValue(bigDecimal.toString());
     }
 }
