@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,12 @@ public class Value implements Serializable {
 
     @NotNull
     Integer value;
+
+    Long votes;
+
+    String author;
+
+    LocalDateTime createdDate;
 
     Value(int value, String description) {
         this.description = description;
