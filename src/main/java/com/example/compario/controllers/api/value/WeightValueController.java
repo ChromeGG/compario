@@ -20,4 +20,9 @@ public class WeightValueController extends GenericController<WeightValue> {
     public GenericService<WeightValue> getService() {
         return weightValueService;
     }
+
+    @Override
+    public WeightValue getNewInstanceOfT() {
+        return new WeightValue();
+    }
 }

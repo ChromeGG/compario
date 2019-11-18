@@ -21,4 +21,9 @@ public class CurrencyValueControllerREST extends GenericController<CurrencyValue
         return currencyValueService;
     }
 
+    @Override
+    public CurrencyValue getNewInstanceOfT() {
+        return new CurrencyValue();
+    }
+
 }

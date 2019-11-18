@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,7 +20,7 @@ public class Value implements Serializable {
     String description;
 
     @NotNull
-    Integer value;
+    BigDecimal value;
 
     Long votes;
 
@@ -27,7 +28,7 @@ public class Value implements Serializable {
 
     LocalDateTime createdDate;
 
-    Value(int value, String description) {
+    public Value(BigDecimal value, String description) {
         this.description = description;
         this.value = value;
     }

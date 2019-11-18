@@ -20,4 +20,9 @@ public class SpeedValueControllerREST extends GenericController<SpeedValue> {
     public GenericService<SpeedValue> getService() {
         return speedValueService;
     }
+
+    @Override
+    public SpeedValue getNewInstanceOfT() {
+        return new SpeedValue();
+    }
 }

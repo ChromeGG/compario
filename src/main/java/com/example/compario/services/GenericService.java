@@ -1,11 +1,11 @@
 package com.example.compario.services;
 
+import com.example.compario.models.Value;
 import com.example.compario.repositories.GenericValueRepository;
-import org.springframework.data.domain.Example;
 
 import java.util.Optional;
 
-public abstract class GenericService<T> {
+public abstract class GenericService<T extends Value> {
 
     public abstract GenericValueRepository<T> getRepository();
 
@@ -15,14 +15,21 @@ public abstract class GenericService<T> {
 
     public T save(T entity) {
         //TODO check if entity.description exist, else save()...
-        Optional<T> one = getRepository().findOne(Example.of(entity));
+        Optional<T> byDescription = getRepository().findByDescription(entity);
 
+//        if (entity.getDescription().equals(byDescription.get().getDescription())) {
+//            throw new RuntimeException(byDescription.get().toString() + " descriptions are the same");
+//        } else {
+//            return getRepository().save(entity);
+//        }
 
         return getRepository().save(entity);
     }
 
     public void delete(String id) {
         Optional<T> toRemove = getRepository().findById(id);
-        getRepository().delete((T) toRemove);
+
+        //TODO fix optional.get
+        getRepository().delete(toRemove.get());
     }
 }
