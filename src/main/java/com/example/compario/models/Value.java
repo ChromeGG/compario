@@ -2,7 +2,7 @@ package com.example.compario.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Value implements Serializable {
 
-    @Id
+    @MongoId
     String id;
 
     @NotNull

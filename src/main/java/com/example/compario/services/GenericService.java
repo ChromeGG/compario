@@ -13,17 +13,14 @@ public abstract class GenericService<T extends Value> {
         return getRepository().findAll();
     }
 
-    public T save(T entity) {
-        //TODO check if entity.description exist, else save()...
-        Optional<T> byDescription = getRepository().findByDescription(entity);
+    public void save(T entity) {
+        Optional<T> valueWithTheSameDescription = getRepository().findByDescription(entity.getDescription());
 
-//        if (entity.getDescription().equals(byDescription.get().getDescription())) {
-//            throw new RuntimeException(byDescription.get().toString() + " descriptions are the same");
-//        } else {
-//            return getRepository().save(entity);
-//        }
-
-        return getRepository().save(entity);
+        if (valueWithTheSameDescription.isEmpty()) {
+            getRepository().save(entity);
+        } else {
+            throw new RuntimeException(valueWithTheSameDescription.get().toString() + " descriptions are the same");
+        }
     }
 
     public void delete(String id) {
