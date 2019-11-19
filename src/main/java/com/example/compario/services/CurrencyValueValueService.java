@@ -6,11 +6,11 @@ import com.example.compario.repositories.GenericValueRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CurrencyValueService extends GenericService<CurrencyValue> {
+public class CurrencyValueValueService extends GenericValueService<CurrencyValue> {
 
     private final CurrencyValueRepository currencyValueRepository;
 
-    public CurrencyValueService(CurrencyValueRepository currencyValueRepository) {
+    public CurrencyValueValueService(CurrencyValueRepository currencyValueRepository) {
         this.currencyValueRepository = currencyValueRepository;
     }
 

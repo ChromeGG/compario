@@ -2,7 +2,7 @@ package com.example.compario.controllers.api.value;
 
 
 import com.example.compario.models.Value;
-import com.example.compario.services.GenericService;
+import com.example.compario.services.GenericValueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public abstract class GenericController<T extends Value> {
 
-    public abstract GenericService<T> getService();
+    public abstract GenericValueService<T> getService();
 
     public abstract T getNewInstanceOfT();
 
@@ -59,9 +59,19 @@ public abstract class GenericController<T extends Value> {
         }
     }
 
+    //TODO test this method!!
+    @PutMapping("/{id}")
+    public ResponseEntity<T> update(@PathVariable String id, @RequestBody T t) {
+        try {
+            getService().update(t);
+            return ResponseEntity.ok(t);
+        } catch (RuntimeException exception) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable String id) {
-        System.out.println(id);
+    public ResponseEntity delete(@PathVariable String id) {
         try {
             getService().deleteByID(id);
             return ResponseEntity.ok().build();
