@@ -15,8 +15,8 @@ public abstract class GenericService<T extends Value> {
         return getRepository().findAll();
     }
 
-    public Optional<T> findByDescription(String decription) {
-        return getRepository().findByDescription(decription);
+    public Optional<T> findByDescription(String description) {
+        return getRepository().findByDescription(description);
     }
 
     public void save(T entity) {
@@ -29,11 +29,16 @@ public abstract class GenericService<T extends Value> {
         }
     }
 
-    public void delete(String id) {
-        Optional<T> toRemove = getRepository().findById(id);
+    public void deleteByID(String id) {
+        GenericValueRepository<T> repository = getRepository();
+        Optional<T> byId = repository.findById(id);
 
-        //TODO fix optional.get
-        getRepository().delete(toRemove.get());
+        if (byId.isPresent()) {
+            repository.delete(byId.get());
+        } else {
+            throw new RuntimeException(" descriptions are the same");
+        }
+
     }
 
     public List<T> findByValue(BigDecimal bigDecimal) {

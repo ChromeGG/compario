@@ -5,9 +5,7 @@ import com.example.compario.models.Value;
 import com.example.compario.services.GenericService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -58,6 +56,17 @@ public abstract class GenericController<T extends Value> {
             return ResponseEntity.status(HttpStatus.CREATED).body(entity);
         } catch (RuntimeException exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable String id) {
+        System.out.println(id);
+        try {
+            getService().deleteByID(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }
