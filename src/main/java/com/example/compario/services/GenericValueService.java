@@ -45,16 +45,18 @@ public abstract class GenericValueService<T extends Value> {
         return getRepository().findByValue(bigDecimal.toString());
     }
 
-    public void update(T newValue) {
+    public void update(T newValue, String id) {
         GenericValueRepository<T> repository = getRepository();
-        Optional<T> valueFromRepo = repository.findById(newValue.getId());
+        Optional<T> valueFromRepo = repository.findById(id);
 
         //FIXME maybe short way?
         if (valueFromRepo.isPresent()) {
             valueFromRepo.map(old -> {
+                repository.delete(old);
                 old.setId(newValue.getId());
                 old.setDescription(newValue.getDescription());
                 old.setValue(newValue.getValue());
+                old.setAuthor(newValue.getAuthor());
                 old.setVotes(newValue.getVotes());
                 old.setCreatedDate(newValue.getCreatedDate());
                 return repository.save(old);

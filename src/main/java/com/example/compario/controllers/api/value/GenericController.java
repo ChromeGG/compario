@@ -59,11 +59,10 @@ public abstract class GenericController<T extends Value> {
         }
     }
 
-    //TODO test this method!!
     @PutMapping("/{id}")
     public ResponseEntity<T> update(@PathVariable String id, @RequestBody T t) {
         try {
-            getService().update(t);
+            getService().update(t, id);
             return ResponseEntity.ok(t);
         } catch (RuntimeException exception) {
             return ResponseEntity.badRequest().build();

@@ -28,7 +28,7 @@ public class Value implements Serializable {
 
     LocalDateTime createdDate;
 
-    public Value(BigDecimal value, String description) {
+    Value(BigDecimal value, String description) {
         this.description = description;
         this.value = value;
     }
