@@ -1,8 +1,8 @@
 package com.example.compario.controllers.api.value;
 
 import com.example.compario.models.WeightValue;
-import com.example.compario.services.GenericService;
-import com.example.compario.services.WeightValueService;
+import com.example.compario.services.GenericValueService;
+import com.example.compario.services.WeightValueValueService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/values/weight")
 public class WeightValueController extends GenericController<WeightValue> {
 
-    private final WeightValueService weightValueService;
+    private final WeightValueValueService weightValueService;
 
-    public WeightValueController(WeightValueService weightValueService) {
+    public WeightValueController(WeightValueValueService weightValueService) {
         this.weightValueService = weightValueService;
     }
 
     @Override
-    public GenericService<WeightValue> getService() {
+    public GenericValueService<WeightValue> getService() {
         return weightValueService;
     }
 

@@ -6,11 +6,11 @@ import com.example.compario.repositories.WeightValueRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WeightValueService extends GenericService<WeightValue> {
+public class WeightValueValueService extends GenericValueService<WeightValue> {
 
     private final WeightValueRepository weightValueRepository;
 
-    public WeightValueService(WeightValueRepository weightValueRepository) {
+    public WeightValueValueService(WeightValueRepository weightValueRepository) {
         this.weightValueRepository = weightValueRepository;
     }
 
