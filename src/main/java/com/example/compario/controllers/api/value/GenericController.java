@@ -3,6 +3,7 @@ package com.example.compario.controllers.api.value;
 
 import com.example.compario.models.Value;
 import com.example.compario.services.GenericValueService;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 public abstract class GenericController<T extends Value> {
 
@@ -24,7 +27,12 @@ public abstract class GenericController<T extends Value> {
 
     @GetMapping("/{id}")
     public ResponseEntity<T> findById(@PathVariable String id) {
-        return ResponseEntity.ok(getService().findById(id));
+        T byId = getService().findById(id);
+
+        Link link = linkTo(getClass()).slash(byId.getId()).withSelfRel();
+
+        byId.add(link);
+        return ResponseEntity.ok(byId);
     }
 
     @GetMapping(params = "value")
