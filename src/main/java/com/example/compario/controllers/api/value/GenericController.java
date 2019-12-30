@@ -3,6 +3,7 @@ package com.example.compario.controllers.api.value;
 
 import com.example.compario.models.Value;
 import com.example.compario.services.GenericValueService;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,18 @@ public abstract class GenericController<T extends Value> {
     public abstract T getNewInstanceOfT();
 
     @GetMapping
-    public ResponseEntity<Iterable<T>> findAll() {
+    public ResponseEntity<CollectionModel<T>> findAll() {
+        List<T> all = getService().findAll();
 
-        return ResponseEntity.ok(getService().findAll());
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            all.forEach(t -> t.add(linkTo(getClass()).slash(t.getId()).withSelfRel()));
+            Link link = linkTo(getClass()).withSelfRel();
+            CollectionModel<T> models = new CollectionModel<>(all, link);
+
+            return ResponseEntity.ok(models);
+        }
     }
 
     @GetMapping("/{id}")

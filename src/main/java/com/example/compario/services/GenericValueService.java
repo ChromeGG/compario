@@ -11,7 +11,7 @@ public abstract class GenericValueService<T extends Value> {
 
     public abstract GenericValueRepository<T> getRepository();
 
-    public Iterable<T> findAll() {
+    public List<T> findAll() {
         return getRepository().findAll();
     }
 
