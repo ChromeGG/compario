@@ -41,16 +41,11 @@ public abstract class GenericValueService<T extends Value> {
 
     }
 
-    public T findById(String id) {
+    public Optional<T> findById(String id) {
         GenericValueRepository<T> repository = getRepository();
 
-        Optional<T> byId = repository.findById(id);
-
-        if (byId.isPresent()) {
-            return byId.get();
-        } else {
-            throw new RuntimeException("Can't find object with id like " + id);
-        }
+        //            throw new RuntimeException("Can't find object with id like " + id);
+        return repository.findById(id);
     }
 
     public List<T> findByValue(BigDecimal bigDecimal) {

@@ -3,6 +3,7 @@ package com.example.compario.controllers.api.value;
 
 import com.example.compario.models.Value;
 import com.example.compario.services.GenericValueService;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +23,21 @@ public abstract class GenericController<T extends Value> {
 
     @GetMapping
     public ResponseEntity<Iterable<T>> findAll() {
+
         return ResponseEntity.ok(getService().findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> findById(@PathVariable String id) {
-        T byId = getService().findById(id);
+    public ResponseEntity<EntityModel<T>> findById(@PathVariable String id) {
+        Optional<T> byId = getService().findById(id);
 
-        Link link = linkTo(getClass()).slash(byId.getId()).withSelfRel();
-
-        byId.add(link);
-        return ResponseEntity.ok(byId);
+        if (byId.isPresent()) {
+            Link link = linkTo(getClass()).slash(byId.get().getId()).withSelfRel();
+            EntityModel<T> entityModel = new EntityModel<>(byId.get(), link);
+            return ResponseEntity.ok(entityModel);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(params = "value")
