@@ -41,6 +41,13 @@ public abstract class GenericValueService<T extends Value> {
 
     }
 
+    public Optional<T> findById(String id) {
+        GenericValueRepository<T> repository = getRepository();
+
+        //            throw new RuntimeException("Can't find object with id like " + id);
+        return repository.findById(id);
+    }
+
     public List<T> findByValue(BigDecimal bigDecimal) {
         return getRepository().findByValue(bigDecimal.toString());
     }
