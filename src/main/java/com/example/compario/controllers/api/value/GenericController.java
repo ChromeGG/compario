@@ -22,6 +22,11 @@ public abstract class GenericController<T extends Value> {
         return ResponseEntity.ok(getService().findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<T> findById(@PathVariable String id) {
+        return ResponseEntity.ok(getService().findById(id));
+    }
+
     @GetMapping(params = "value")
     public ResponseEntity<List<T>> findByValue(@RequestParam(name = "value") String value) {
         List<T> foundByDescription = getService().findByValue(new BigDecimal(value));
@@ -70,7 +75,7 @@ public abstract class GenericController<T extends Value> {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable String id) {
+    public ResponseEntity<T> delete(@PathVariable String id) {
         try {
             getService().deleteByID(id);
             return ResponseEntity.ok().build();
